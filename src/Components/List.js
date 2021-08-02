@@ -1,10 +1,15 @@
 import React from 'react'
 import Pizza from './Pizza'
 
-const List = () => {
+const List = ({listState}) => {
+
+    const products = listState.map( product => (
+        <Pizza key={product.id} product={product} />
+    )) 
+
     return (
         <>
-            <Pizza />
+            {products}
         </>
     )
 }

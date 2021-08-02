@@ -1,9 +1,10 @@
 import React from 'react'
 
-const Pizza = () => {
+const Pizza = ({product}) => {
+
     return (
         <div>
-            Pizza
+            <h3>{product.type}</h3>
         </div>
     )
 }
