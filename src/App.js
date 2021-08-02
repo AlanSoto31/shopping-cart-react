@@ -1,7 +1,14 @@
+import Navbar from "./Components/Navbar";
+import List from "./Components/List";
 
 function App() {
   return (
-    <h1>Hola</h1>
+    <>
+    <Navbar />
+      <div>
+        <List />
+      </div>
+    </>
   );
 }
 
