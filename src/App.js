@@ -1,5 +1,6 @@
 import Navbar from "./Components/Navbar";
 import List from "./Components/List";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const listState = [
   {
@@ -19,7 +20,7 @@ const listState = [
 function App() {
   return (
     <>
-    <Navbar />
+    <Navbar className={'d-flex justify-content-between align-content-center'}/>
       <div>
         <List listState={listState} />
       </div>
