@@ -1,5 +1,7 @@
 import React from 'react'
 import Pizza from './Pizza'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 
 const List = ({listState}) => {
 
@@ -9,7 +11,11 @@ const List = ({listState}) => {
 
     return (
         <>
-            {products}
+            <Container className="mt-4">
+                <Row className="g-4">
+                    {products}
+                </Row>
+            </Container>
         </>
     )
 }
