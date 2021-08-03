@@ -36,11 +36,24 @@ function App() {
     } else {setCartProducts([...cartProducts, product])}
   }
 
+  const removeOne = (product) => {
+    if(product.qty > 0){
+      const newQty = product.qty - 1
+      const newCartProducts = cartProducts.map(item => item.id === product.id ? {...item, qty: newQty} : item);
+      setCartProducts(newCartProducts)
+    }else { removeProduct(product) }
+  }
+
+  const removeProduct = (product) => {
+    const newCartProducts = cartProducts.filter(item => item.id !== product.id)
+    setCartProducts(newCartProducts)
+  }
+
   return (
     <>
     <Navbar className={'d-flex justify-content-between align-content-center'}/>
       <div>
-        <Cart cartProducts={cartProducts} />
+        <Cart cartProducts={cartProducts} add={add} removeOne={removeOne} removeProduct={removeProduct}/>
         <List listState={listState} add={add} />
       </div>
     </>
