@@ -1,9 +1,18 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button'
 
-const Cart = () => {
+const Cart = ({cartProducts}) => {
+
+    const products = cartProducts.length > 0 ? cartProducts.map(item => (
+        <div key={item.id}>
+            <div>{`${item.qty} pizza de ${item.type}`}</div>
+        </div>
+    )) : 'Add a pizza'
+
     return (
-        <Button>Cart</Button>
+        <>
+            <p>Your order is:</p>
+            { products }
+        </>
     )
 }
 

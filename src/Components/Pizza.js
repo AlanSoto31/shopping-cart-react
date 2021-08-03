@@ -3,10 +3,10 @@ import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
-const Pizza = ({product}) => {
+const Pizza = ({product, add}) => {
 
     return (
-        <Col sm={12} md={6} lg={6} className="mb-4">
+        <Col sm={12} md={6} lg={4} className="mb-4">
             <Card className="h-100">
                 <Card.Img variant="top card-img" src={product.img_url} />
                 <Card.Title className="font-weight-bold text-center my-2">
@@ -16,7 +16,7 @@ const Pizza = ({product}) => {
                     <Card.Text className={'text-center'}>
                        ${product.price}
                     </Card.Text>
-                    <Button variant="warning">Add to cart</Button>
+                    <Button variant="warning" onClick={() => add(product)}>Add to cart</Button>
                 </Card.Body>
             </Card>
       </Col>

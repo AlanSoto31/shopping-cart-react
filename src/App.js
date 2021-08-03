@@ -1,6 +1,8 @@
+import React, { useState } from 'react'
 import Navbar from "./Components/Navbar";
 import List from "./Components/List";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Cart from "./Components/Cart";
 
 const listState = [
   {
@@ -20,11 +22,26 @@ const listState = [
 ]
 
 function App() {
+  const [cartProducts, setCartProducts] = useState([])
+
+  const add = (product) => {
+    const target = cartProducts.find(item => item.id === product.id)
+
+    if(target){
+      const newQty = target.qty + 1
+
+      const newCartProducts = cartProducts.map(item => item.id === product.id ? {...item, qty: newQty} : item);
+      setCartProducts(newCartProducts)
+
+    } else {setCartProducts([...cartProducts, product])}
+  }
+
   return (
     <>
     <Navbar className={'d-flex justify-content-between align-content-center'}/>
       <div>
-        <List listState={listState} />
+        <Cart cartProducts={cartProducts} />
+        <List listState={listState} add={add} />
       </div>
     </>
   );
