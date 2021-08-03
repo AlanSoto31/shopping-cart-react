@@ -37,7 +37,7 @@ function App() {
   }
 
   const removeOne = (product) => {
-    if(product.qty > 0){
+    if(product.qty > 1){
       const newQty = product.qty - 1
       const newCartProducts = cartProducts.map(item => item.id === product.id ? {...item, qty: newQty} : item);
       setCartProducts(newCartProducts)
