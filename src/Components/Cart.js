@@ -2,7 +2,7 @@ import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 
-const Cart = ({cartProducts, add, removeOne, removeProduct}) => {
+const Cart = ({cartProducts, add, removeOne, removeProduct, storeCart }) => {
 
     const total = cartProducts.reduce((a, b) => a + (b.qty * b.price), 0)
 
@@ -18,11 +18,17 @@ const Cart = ({cartProducts, add, removeOne, removeProduct}) => {
         </div>
     )) : 'Add a pizza please'
 
+    const history = {
+        date: '03-Ago-2021',
+        total: total,
+    } 
+
     return (
         <Container>
             <div className='w-50 d-flex flex-column justify-content-center align-items-end px-3'>
                 <div className='w-100'>{ products }</div>
                 <div className='text-align-right'></div>{cartProducts.length > 0 ? `Total = $ ${total}` : ''}
+                {cartProducts.length > 0 ? <Button onClick={() => storeCart(history)}>Checkout</Button> : ''}
             </div>
         </Container>
     )

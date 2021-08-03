@@ -54,11 +54,19 @@ function App() {
     setCartProducts(newCartProducts)
   }
 
+  const storeCart = (history) => {
+    const localHistory = JSON.parse(localStorage.getItem('cartHistory'));
+    const cartHistory = localHistory ? [...localHistory, history] : [...[], history]
+    localStorage.setItem('cartHistory', JSON.stringify(cartHistory));
+    setCartProducts([]);
+  }
+
   return (
     <>
     <Navbar className={'d-flex justify-content-between align-content-center'} renderCart={renderCart} cartPage={cartPage} productsQty={cartProducts.length} />
       <div>
-        {cartPage ? <Cart cartProducts={cartProducts} add={add} removeOne={removeOne} removeProduct={removeProduct}/> : <List listState={listState} add={add} />}
+        {cartPage ? <Cart cartProducts={cartProducts} add={add} removeOne={removeOne} removeProduct={removeProduct} storeCart={storeCart} /> 
+        : <List listState={listState} add={add} />}
       </div>
     </>
   );
