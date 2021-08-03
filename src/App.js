@@ -3,6 +3,7 @@ import Navbar from "./Components/Navbar";
 import List from "./Components/List";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Cart from "./Components/Cart";
+import History from './Components/History';
 
 const listState = [
   {
@@ -23,10 +24,10 @@ const listState = [
 
 function App() {
   const [cartProducts, setCartProducts] = useState([])
-  const [cartPage, setCartPage] = useState(false)
+  const [page, setPage] = useState('PRODUCTS')
 
-  const renderCart = () => {
-    setCartPage(cartPage ? false : true)
+  const renderPage = (page) => {
+    setPage(page)
   }
 
   const add = (product) => {
@@ -61,12 +62,24 @@ function App() {
     setCartProducts([]);
   }
 
+ const switchComponents = () => {
+    switch(page) {
+      case 'PRODUCTS':
+        return <List listState={listState} add={add} />
+      case 'CART':
+        return <Cart cartProducts={cartProducts} add={add} removeOne={removeOne} removeProduct={removeProduct} storeCart={storeCart} /> 
+        case 'HISTORY':
+         return  <History />
+      default:
+        return <List listState={listState} add={add} />
+    } 
+ }
+
   return (
     <>
-    <Navbar className={'d-flex justify-content-between align-content-center'} renderCart={renderCart} cartPage={cartPage} productsQty={cartProducts.length} />
+    <Navbar className={'d-flex justify-content-between align-content-center'} renderPage={renderPage} productsQty={cartProducts.length} />
       <div>
-        {cartPage ? <Cart cartProducts={cartProducts} add={add} removeOne={removeOne} removeProduct={removeProduct} storeCart={storeCart} /> 
-        : <List listState={listState} add={add} />}
+        { switchComponents()}
       </div>
     </>
   );
