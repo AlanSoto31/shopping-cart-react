@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 
 const Cart = ({cartProducts, add, removeOne, removeProduct}) => {
-    // const [total, setTotal] = useState(0)
 
     const total = cartProducts.reduce((a, b) => a + (b.qty * b.price), 0)
 

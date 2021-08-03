@@ -23,6 +23,11 @@ const listState = [
 
 function App() {
   const [cartProducts, setCartProducts] = useState([])
+  const [cartPage, setCartPage] = useState(false)
+
+  const renderCart = () => {
+    setCartPage(cartPage ? false : true)
+  }
 
   const add = (product) => {
     const target = cartProducts.find(item => item.id === product.id)
@@ -51,10 +56,9 @@ function App() {
 
   return (
     <>
-    <Navbar className={'d-flex justify-content-between align-content-center'}/>
+    <Navbar className={'d-flex justify-content-between align-content-center'} renderCart={renderCart} cartPage={cartPage} productsQty={cartProducts.length} />
       <div>
-        <Cart cartProducts={cartProducts} add={add} removeOne={removeOne} removeProduct={removeProduct}/>
-        <List listState={listState} add={add} />
+        {cartPage ? <Cart cartProducts={cartProducts} add={add} removeOne={removeOne} removeProduct={removeProduct}/> : <List listState={listState} add={add} />}
       </div>
     </>
   );
